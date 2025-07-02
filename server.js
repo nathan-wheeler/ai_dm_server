@@ -1,10 +1,14 @@
 const express = require('express');
+const cors = require('cors');
 const fetch = require('node-fetch');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
+app.use(cors({
+  origin: 'https://nathan-wheeler.github.io'
+}));
 
 app.post('/api/chat', async (req, res) => {
   const messages = req.body.messages;

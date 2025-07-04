@@ -28,6 +28,10 @@ app.post('/api/chat', async (req, res) => {
     });
 
     const data = await response.json();
+    console.log('🧠 OpenAI Response:', data);
+    if (!data.choices) {
+      return res.status(500).json({ error: 'OpenAI response missing choices', raw: data });
+    }
     res.json(data);
   } catch (error) {
     console.error('Error calling OpenAI:', error);
